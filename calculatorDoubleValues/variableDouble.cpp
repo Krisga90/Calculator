@@ -20,7 +20,7 @@ _index_numerator(index_numerator), _index_denominator(index_denominator)
 	_value = static_cast<double>(val);
 }
 
-Variable::Variable(const Variable & var) : _value(var._value), _ch(var._ch), 
+Variable::Variable(const Variable & var): _value(var._value), _ch(var._ch), 
 _index_numerator(var._index_numerator), _index_denominator(var._index_denominator)
 {
 
@@ -51,17 +51,13 @@ Variable & Variable::operator=(const Variable & var)
 		return *this;
 	}
 	this-> _value = var._value;
+	this->_ch = var._ch;
+	this->_index_numerator = var._index_numerator;
+	this->_index_denominator = var._index_denominator;
 	return *this;
 }
 
 //	END				***assignment operator***
-
-//					***Return Value***
-double Variable::value() const
-{
-	return _value;
-}
-//	END				***Return Value***
 
 //			***assign value ***
 void Variable::assign(const double val, char c , int index_numerator, int index_denominator)
@@ -134,7 +130,7 @@ Variable & Variable::operator/=(double val)
 
 Variable & Variable::operator+=(const Variable & var)
 {
-	if (var._ch!= _ch || (var._index_numerator/var._index_denominator)!=(_index_numerator/_index_denominator))
+	if (var._ch!= _ch || (var.index() != this->index()))
 	{
 		throw std::invalid_argument("can't add different variable ");
 	}
@@ -144,7 +140,7 @@ Variable & Variable::operator+=(const Variable & var)
 
 Variable & Variable::operator-=(const Variable & var)
 {
-	if (var._ch != _ch || (var._index_numerator / var._index_denominator) != (_index_numerator / _index_denominator))
+	if (var._ch != _ch || (var.index() != this->index()))
 	{
 		throw std::invalid_argument("can't subtract different variable ");
 	}
@@ -171,8 +167,9 @@ Variable & Variable::operator*=(const Variable & var)
 	}
 	else if (_index_denominator != var._index_denominator)
 	{
-		_index_denominator *= var._index_denominator;
 		_index_numerator = _index_numerator * var._index_denominator + var._index_numerator *_index_denominator;
+		_index_denominator *= var._index_denominator;
+		
 	}
 	else
 	{
@@ -209,8 +206,9 @@ Variable & Variable::operator/=(const Variable & var)
 	}
 	else if (_index_denominator != var._index_denominator)
 	{
-		_index_denominator *= var._index_denominator;
 		_index_numerator = _index_numerator * var._index_denominator - var._index_numerator *_index_denominator;
+		_index_denominator *= var._index_denominator;
+
 	}
 	else
 	{
@@ -270,7 +268,7 @@ Variable Variable::operator/(double val)const
 //		******Class Variable
 Variable Variable::operator+(const Variable & var)const	// =Variable(_value + var._value);
 {
-	if (var._ch != _ch || (var._index_numerator / var._index_denominator) != (_index_numerator / _index_denominator))
+	if (var._ch != _ch || (var.index() != this->index()))
 	{
 		throw std::invalid_argument("can't add different variable ");
 	}
@@ -279,7 +277,7 @@ Variable Variable::operator+(const Variable & var)const	// =Variable(_value + va
 
 Variable Variable::operator-(const Variable & var)const	// =Variable(_value - var._value);
 {
-	if (var._ch != _ch || (var._index_numerator / var._index_denominator) != (_index_numerator / _index_denominator))
+	if (var._ch != _ch || (var.index() != this->index()))
 	{
 		throw std::invalid_argument("can't subtract different variable ");
 	}

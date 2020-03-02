@@ -4,14 +4,16 @@
 #include <iostream>
 
 
+
 #pragma once
 class Variable
 {
 private:
 	double _value;
 	char _ch;
-	int _index_denominator;
 	int _index_numerator;
+	int _index_denominator;
+
 
 	void fractionShortening();
 
@@ -30,7 +32,9 @@ public:
 
 	Variable & operator=(const Variable & via);
 
-	double value() const;					//return _value
+	inline double value() const { return _value; }					//return _value
+	inline std::pair<int, int> indexp()const { return std::pair<int, int>(_index_numerator, _index_denominator); }		//return 2 index values
+	inline double index()const { return (static_cast<double>(_index_numerator) / static_cast<double>(_index_denominator)); }
 	void assign(const double val,char c ='0', int index_numerator=1, int index_denominator = 1);			//assigne _value , char c
 	//void assign(const int val, char c= '0', int index_numerator = 1, int index_denominator = 1);				//assigne _value,  char c
 

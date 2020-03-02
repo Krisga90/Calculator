@@ -1,4 +1,3 @@
-
 #include "pch.h"
 #include "../calculatorDoubleValues/variableDouble.cpp"
 
@@ -254,17 +253,251 @@ TEST_F(VariableDoubleTest, CanDivideMultipleObjectBy0AndValues)
 }
 
 
-//		test of different Variable like 'a' ,'b' and so on...
+//		*******test of different Variable like 'a' ,'b' and so on...
 
-TEST_F(VariableDoubleTest, CanDivideDifferentObjectBy0AndValues)
+TEST_F(VariableDoubleTest, CanAddDifferentVariableClassObject)
 {
-	var1.assign(1,'a');
-	var2.assign(2,'b');
-	ASSERT_THROW((var1/var2).value(), std::invalid_argument);
+	var1.assign(1, 'a');
+	var2.assign(2, 'b');
+	ASSERT_THROW((var1 + var2).value(), std::invalid_argument);
 	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
 	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
 
 }
+
+TEST_F(VariableDoubleTest, CanCubtractDifferentVariableClassObject)
+{
+	var1.assign(1, 'a');
+	var2.assign(2, 'b');
+	ASSERT_THROW((var1 + var2).value(), std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+
+TEST_F(VariableDoubleTest, CanMultiplyDifferentVariableClassObject)
+{
+	var1.assign(1, 'a');
+	var2.assign(2, 'b');
+	ASSERT_THROW((var1 * var2).value(), std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanDivideDifferentVariableClassObject)
+{
+	var1.assign(1, 'a');
+	var2.assign(2, 'b');
+	ASSERT_THROW((var1 / var2).value(), std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanDivideBy0DifferentVariableClassObject)
+{
+	var1.assign(1, 'a');
+	var2.assign(0, 'b');
+	ASSERT_THROW((var1 / var2).value(), std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(0, var2.value(), 0.00001);
+}
+
+
+//   *******test of different index of same Variable like : a^2 , a^3 and so on...
+
+//		same viarable same index
+
+TEST_F(VariableDoubleTest, CanAddSameVariableWithSameIndexVariableClass)
+{
+	var1.assign(1, 'a');
+	var2.assign(2, 'a');
+	var3 = var1 + var2;
+	ASSERT_DOUBLE_EQ(3, var3.value());
+	ASSERT_DOUBLE_EQ(1, var3.index());
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanSubtractSameVariableWithSameIndexVariableClass)
+{
+	var1.assign(1, 'a');
+	var2.assign(2, 'a');
+	var3 = var1 - var2;
+	ASSERT_DOUBLE_EQ(-1, var3.value());
+	ASSERT_DOUBLE_EQ(1, var3.index());
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+
+TEST_F(VariableDoubleTest, CanMultiplySameVariableWithSameIndexVariableClass)
+{
+	var1.assign(1, 'a');
+	var2.assign(2, 'a');
+	var3 = var1 * var2;
+	ASSERT_DOUBLE_EQ(2, var3.value());
+	ASSERT_DOUBLE_EQ(2, var3.index());
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanDivideSameVariableWithSameIndexVariableClass)
+{
+	var1.assign(1, 'a');
+	var2.assign(2, 'a');
+	var3 = var1 / var2;
+	ASSERT_DOUBLE_EQ(0.5, var3.value());
+	ASSERT_DOUBLE_EQ(0, var3.index());
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanDivideBy0SameVariableWithSameIndexVariableClass)
+{
+	var1.assign(1, 'a');
+	var2.assign(0, 'a');
+	ASSERT_THROW((var1 / var2).value(), std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(0, var2.value(), 0.00001);
+}
+
+//	END	same viarable same index
+
+//		same viarable same index denominator
+
+
+TEST_F(VariableDoubleTest, CanAddSameVariableWithSameIndexDenominatorVariableClass)
+{
+	var1.assign(1, 'a',1);
+	var2.assign(2, 'a',2);
+	ASSERT_THROW(var1 + var2, std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanSubtractSameVariableWithSameIndexDenominatorVariableClass)
+{
+	var1.assign(1, 'a', 1);
+	var2.assign(2, 'a', 2);
+	ASSERT_THROW(var1 - var2, std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+
+TEST_F(VariableDoubleTest, CanMultiplySameVariableWithSameIndexDenominatorVariableClass)
+{
+	var1.assign(1, 'a', 1);
+	var2.assign(2, 'a', 2);
+	var3 = var1 * var2;
+	ASSERT_DOUBLE_EQ(2, var3.value());
+	ASSERT_DOUBLE_EQ(3, var3.index());
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanDivideSameVariableWithSameIndexDenominatorVariableClass)
+{
+	var1.assign(1, 'a', 1);
+	var2.assign(2, 'a', 2);
+	var3 = var1 / var2;
+	ASSERT_DOUBLE_EQ(0.5, var3.value());
+	ASSERT_DOUBLE_EQ(-1, var3.index());
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanDivideBy0SameVariableWithSameIndexDenominatorVariableClass)
+{
+	var1.assign(1, 'a', 1);
+	var2.assign(0, 'a', 2);
+	ASSERT_THROW((var1 / var2), std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(0, var2.value(), 0.00001);
+}
+
+
+//	END	same viarable  same index denominator
+
+//		same viarable different index
+
+TEST_F(VariableDoubleTest, CanAddSameVariableWithDifferentIndexVariableClass)
+{
+	var1.assign(1, 'a', 1, 2);
+	var2.assign(2, 'a', 1, 3);
+	ASSERT_THROW(var1 + var2, std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanSubtractSameVariableWithDifferentIndexVariableClass)
+{
+	var1.assign(1, 'a', 1, 2);
+	var2.assign(2, 'a', 1, 3);
+	ASSERT_THROW(var1 - var2, std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+
+TEST_F(VariableDoubleTest, CanMultiplySameVariableWithDifferentIndexVariableClass)
+{
+	var1.assign(1, 'a', 1, 2);
+	var2.assign(2, 'a', 1, 3);
+	var3 = var1 * var2;
+	ASSERT_DOUBLE_EQ(2, var3.value());
+	ASSERT_DOUBLE_EQ(5.0/6.0, var3.index());
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanDivideSameVariableWithDifferentIndexVariableClass)
+{
+	var1.assign(1, 'a', 1, 2);
+	var2.assign(2, 'a', 1, 3);
+	var3 = var1 / var2;
+	ASSERT_DOUBLE_EQ(0.5, var3.value());
+	ASSERT_DOUBLE_EQ(1.0/6.0, var3.index());
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(2, var2.value(), 0.00001);
+
+}
+
+TEST_F(VariableDoubleTest, CanDivideBy0SameVariableWithDifferentIndexVariableClass)
+{
+	var1.assign(1, 'a', 1, 2);
+	var2.assign(0, 'a', 1, 3);
+	ASSERT_THROW((var1 / var2), std::invalid_argument);
+	ASSERT_DOUBLE_EQ(1, var1.value(), 0.00001);
+	ASSERT_DOUBLE_EQ(0, var2.value(), 0.00001);
+}
+
+
+
+
+//	END	same viarable different index
+
+//  END *******test of different index of same Variable like : a^2 , a^3 and so on...
+
+
+
+
+
+
 
 
 
