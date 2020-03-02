@@ -2,6 +2,7 @@
 #define viaCULATE_DOUBLE_H_
 
 #include <iostream>
+#include "primeNumbers.h"
 
 
 
@@ -14,9 +15,9 @@ private:
 	int _index_numerator;
 	int _index_denominator;
 
-
 	void fractionShortening();
-
+	void index_divide(const int numerator,const int denominator, char ch);
+	void index_multiply(const int numerator, const int denominator, char ch);
 
 public:
 

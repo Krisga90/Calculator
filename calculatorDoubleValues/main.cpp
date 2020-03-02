@@ -1,5 +1,6 @@
 #include <iostream>
 #include "variableDouble.h"
+//#include "primeNumbers.h"
 
 int main()
 {
@@ -16,7 +17,7 @@ int main()
 		std::cerr << e.what();
 	}
 	int j = 0;
-
+	auto temp = primeNumbers();
 	return 0;
 
 

@@ -21,9 +21,15 @@
     <ClCompile Include="variableDouble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="primeNumbers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="variableDouble.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primeNumbers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

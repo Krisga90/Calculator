@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "../calculatorDoubleValues/variableDouble.cpp"
+#include "../calculatorDoubleValues/primeNumbers.cpp"
+
 
 class VariableDoubleTest : public::testing::Test{
 
@@ -432,6 +434,7 @@ TEST_F(VariableDoubleTest, CanDivideBy0SameVariableWithSameIndexDenominatorVaria
 
 //		same viarable different index
 
+
 TEST_F(VariableDoubleTest, CanAddSameVariableWithDifferentIndexVariableClass)
 {
 	var1.assign(1, 'a', 1, 2);
@@ -486,6 +489,33 @@ TEST_F(VariableDoubleTest, CanDivideBy0SameVariableWithDifferentIndexVariableCla
 	ASSERT_DOUBLE_EQ(0, var2.value(), 0.00001);
 }
 
+//testing fractionShortening() function
+
+TEST_F(VariableDoubleTest, FractionShorteningVariableClass)
+{
+	var1.assign(1, 'a', 2,512 );
+	auto indexPair = var1.indexp();
+	ASSERT_DOUBLE_EQ(1, indexPair.first, 0.00001);
+	ASSERT_DOUBLE_EQ(256, indexPair.second, 0.00001);
+}
+
+TEST_F(VariableDoubleTest, DivideFractionShorteningVariableClass)
+{
+	var1.assign(1, 'a', 5, 6);
+	var2.assign(1, 'a', 2, 6);
+	auto indexPair = (var1/var2).indexp();
+	ASSERT_DOUBLE_EQ(1, indexPair.first, 0.00001);
+	ASSERT_DOUBLE_EQ(2, indexPair.second, 0.00001);
+}
+
+TEST_F(VariableDoubleTest, MultiplyFractionShorteningVariableClass)
+{
+	var1.assign(1, 'a', 1, 6);
+	var2.assign(1, 'a', 2, 6);
+	auto indexPair = (var1 * var2).indexp();
+	ASSERT_DOUBLE_EQ(1, indexPair.first, 0.00001);
+	ASSERT_DOUBLE_EQ(2, indexPair.second, 0.00001);
+}
 
 
 
