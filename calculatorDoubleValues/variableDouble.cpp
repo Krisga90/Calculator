@@ -122,10 +122,10 @@ Variable & Variable::operator=(const Variable & var)
 	{
 		return *this;
 	}
-	this-> _value = var._value;
-	this->_ch = var._ch;
-	this->_index_numerator = var._index_numerator;
-	this->_index_denominator = var._index_denominator;
+	_value = var._value;
+	_ch = var._ch;
+	_index_numerator = var._index_numerator;
+	_index_denominator = var._index_denominator;
 	return *this;
 }
 
@@ -327,6 +327,11 @@ Variable Variable::operator/(const Variable & var)const	// =Variable(_value / va
 	Variable temp(*this);
 	temp /= var;
 	return temp;
+}
+
+bool Variable::operator==(const Variable & var)const
+{
+	return ((_value == var._value) && (_ch == var._ch) && (_index_numerator == var._index_numerator) && (_index_denominator == var._index_denominator));
 }
 
 

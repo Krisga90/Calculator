@@ -1,5 +1,5 @@
-#ifndef viaCULATE_DOUBLE_H_
-#define viaCULATE_DOUBLE_H_
+#ifndef varCULATE_DOUBLE_H_
+#define varCULATE_DOUBLE_H_
 
 #include <iostream>
 #include "primeNumbers.h"
@@ -25,13 +25,13 @@ public:
 	Variable();
 	Variable(double val, const char c='0', int index_numerator = 1, int index_denominator = 1);
 	Variable(int val, const char c = '0', int index_numerator = 1, int index_denominator = 1);
-	Variable(const Variable & via);
+	Variable(const Variable & var);
 	Variable(const char c, int index_numerator = 1, int index_denominator = 1);
 
 
 	//	END				***constructors***
 
-	Variable & operator=(const Variable & via);
+	Variable & operator=(const Variable & var);
 
 	inline double value() const { return _value; }					//return _value
 	inline std::pair<int, int> indexp()const { return std::pair<int, int>(_index_numerator, _index_denominator); }		//return 2 index values
@@ -50,10 +50,10 @@ public:
 	
 
 	//		******Class Variable
-	Variable & operator+=(const Variable & via);	//_value = _value +via._value;
-	Variable & operator-=(const Variable & via);	//_value = _value -via._value;
-	Variable & operator*=(const Variable & via);	//_value = _value *via._value;
-	Variable & operator/=(const Variable & via);	//_value = _value /via._value;
+	Variable & operator+=(const Variable & var);	//_value = _value +var._value;
+	Variable & operator-=(const Variable & var);	//_value = _value -var._value;
+	Variable & operator*=(const Variable & var);	//_value = _value *var._value;
+	Variable & operator/=(const Variable & var);	//_value = _value /var._value;
 
 	//	END			*****operators +=,-=,*=,/=*********
 
@@ -65,19 +65,21 @@ public:
 	Variable operator/(double val)const;	// =Variable(_value / val);
 
 	//		******Class Variable
-	Variable operator+(const Variable & via)const;	// =Variable(_value + via._value);
-	Variable operator-(const Variable & via)const;	// =Variable(_value - via._value);
-	Variable operator*(const Variable & via)const;	// =Variable(_value * via._value);
-	Variable operator/(const Variable & via)const;	// =Variable(_value / via._value);
+	Variable operator+(const Variable & var)const;	// =Variable(_value + var._value);
+	Variable operator-(const Variable & var)const;	// =Variable(_value - var._value);
+	Variable operator*(const Variable & var)const;	// =Variable(_value * var._value);
+	Variable operator/(const Variable & var)const;	// =Variable(_value / var._value);
+
+	bool operator==(const Variable & var)const;
 
 
 	//				*****FRIEND FUNCTIONS****
 
 	//				*****friend operators +,-,*,/*********
-	friend Variable operator+(double val, const Variable & via);	// =Variable(via._value + val);
-	friend Variable operator-(double val, const Variable & via);	// =Variable(via._value - val);
-	friend Variable operator*(double val, const Variable & via);	// =Variable(via._value * val);
-	friend Variable operator/(double val, const Variable & via);	// =Variablevia.(_value / val);
+	friend Variable operator+(double val, const Variable & var);	// =Variable(var._value + val);
+	friend Variable operator-(double val, const Variable & var);	// =Variable(var._value - val);
+	friend Variable operator*(double val, const Variable & var);	// =Variable(var._value * val);
+	friend Variable operator/(double val, const Variable & var);	// =Variablevar.(_value / val);
 };
 
-#endif // !viaCULATE_DOUBLE_H_
+#endif // !varCULATE_DOUBLE_H_

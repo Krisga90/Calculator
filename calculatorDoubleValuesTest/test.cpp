@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "../calculatorDoubleValues/variableDouble.cpp"
 #include "../calculatorDoubleValues/primeNumbers.cpp"
+#include "../calculatorDoubleValues/equation.cpp"
+
+
+//			Need to use some function to lower number of Tests
 
 
 class VariableDoubleTest : public::testing::Test{
@@ -10,6 +14,8 @@ protected:
 
 };
 
+//		***********Init Tests
+/*
 
 TEST(VariableDoubleTest_, CanInitEmptyVariableClass) {
 	Variable var_n;
@@ -17,16 +23,42 @@ TEST(VariableDoubleTest_, CanInitEmptyVariableClass) {
 }
 
 	
-TEST(VariableDoubleTest_, CanInitWithValueVariableClass) {
-	Variable var_n(1);
+TEST(VariableDoubleTest_, CanInitWithValueAndVariableVariableClass) {
+	Variable var_n(1,'a');
 	ASSERT_DOUBLE_EQ(1, var_n.value(),0.00001);
 }
+
+TEST(VariableDoubleTest_, CanInitWithValueVariableAndIndexNumeraotVariableClass) {
+	Variable var_n(1,'a',1);
+	ASSERT_DOUBLE_EQ(1, var_n.value(), 0.00001);
+}
+
+TEST(VariableDoubleTest_, CanInitWithValueVariableAndIndexVariableClass) {
+	Variable var_n(1,'a',2,2);
+	ASSERT_DOUBLE_EQ(1, var_n.value(), 0.00001);
+}
+
+TEST(VariableDoubleTest_, CanInitWithVariableAndIndexVariableClass) {
+	Variable var_n('a',2,4);
+	ASSERT_DOUBLE_EQ(1, var_n.value(), 0.00001);
+}
+
+TEST(VariableDoubleTest_, CanInitWithValueVariableClass) {
+	Variable var_n(1);
+	ASSERT_DOUBLE_EQ(1, var_n.value(), 0.00001);
+}
+
 
 TEST_F(VariableDoubleTest, CanInitWithoutAssignedValueClassVariableClass) {
 	
 	Variable var_n(var);
 	ASSERT_DOUBLE_EQ(0, var_n.value(), 0.00001);
 }
+*/
+//END  ************Init Tests
+
+//		*******Assign Test
+/*
 
 TEST_F(VariableDoubleTest, CanInitWithAssignedValueClassVariableClass) {
 	
@@ -43,6 +75,8 @@ TEST_F(VariableDoubleTest, CanAssignWithAssignedValueClassVariableClass) {
 	ASSERT_DOUBLE_EQ(5, var_n.value(), 0.00001);
 }
 
+*/
+//END		*******Assign Test
 
 //				*****operators +=,-=,*=,/=*********
 
@@ -517,6 +551,14 @@ TEST_F(VariableDoubleTest, MultiplyFractionShorteningVariableClass)
 	ASSERT_DOUBLE_EQ(2, indexPair.second, 0.00001);
 }
 
+TEST_F(VariableDoubleTest, CanCompareVariableClass)
+{
+	var1.assign(1, 'a', 1, 3);
+	var2.assign(1, 'a', 2, 6);
+	ASSERT_TRUE(var1 == var2);
+}
+
+
 
 
 //	END	same viarable different index
@@ -526,7 +568,33 @@ TEST_F(VariableDoubleTest, MultiplyFractionShorteningVariableClass)
 
 
 
+//						*********Equation Class Tests**********
 
+class EquationTest : public::testing::Test {
+
+protected:
+	Equation eq1;
+};
+
+TEST(EquationTestn, CanInitEmptyEquationClass)
+{
+	Equation eqn;
+}
+
+
+TEST(EquationTestn, CanInitEquationClass)
+{
+	Equation eqn("1 +2x=0");
+}
+
+
+TEST_F(EquationTest, CanAssignEquationEquationClass)
+{
+	eq1.assign("1+2x=0");
+	Variable var_e1(2,'x');
+	ASSERT_TRUE(eq1.variable(0)==var_e1);
+	//ASSERT_TRUE(eq1.constant_d() == 1.0);
+}
 
 
 
